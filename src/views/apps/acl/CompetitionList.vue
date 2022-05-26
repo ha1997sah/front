@@ -1,4 +1,6 @@
 <template>
+<div>
+  
   <content-with-sidebar class="blog-wrapper">
 
     <!-- blogs -->
@@ -51,14 +53,11 @@
             </b-card-text>
             <hr>
             <div class="d-flex justify-content-between align-items-center">
-               <b-button  :disabled="new Date()>new Date(blog.deadline)"
-        v-ripple.400="'rgba(113, 102, 240, 0.15)'"
-        v-b-modal.modal-select2
-        variant="outline-primary"
-        @click="elig(blog.id )"
-      >
-       Participer
-      </b-button>
+              <div v-if="new Date()>new Date(blog.deadline)"> Les inscriptions n'est plus acceptes</div>
+                <div v-else-if="new Date()>new Date(blog.end)"> Finis</div>
+                <div v-else-if="new Date()==new Date(blog.start)"> Aujourd'hui</div>
+                <div v-else>Inscription en cours</div>
+                
       
           
               <b-link
@@ -262,10 +261,11 @@
      
     </b-modal>
   </content-with-sidebar>
+  </div>
 </template>
 
 <script>
-import {
+import { 
   BRow, BCol,BButton,BModal,VBModal, BCard,BForm, BFormInput, BCardText, BCardTitle, BMedia, BAvatar, BMediaAside, BMediaBody, BImg, BCardBody, BLink, BBadge, BFormGroup, BInputGroup, BInputGroupAppend, BPagination,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
@@ -281,6 +281,7 @@ import authentication from '@/services/authentication.js'
 export default {
   components: {
     useToast,
+
     BModal,
     vSelect,
     VBModal,
@@ -324,8 +325,12 @@ export default {
       query:'',
       show:true,
       idComp:'',
-      allowParticip:true
+      allowParticip:true,
+    
 
+      /* eslint-disable global-require */
+
+      /* eslint-disable global-require */
     }
   },
   created() {

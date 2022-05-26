@@ -61,7 +61,7 @@
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
       class="btn-icon rounded-circle"
-       @click="$router.push( { path: `/apps/competitions/players/${cat.id}`})"
+       :to="{ name: 'apps-competitions-players',params: {id:cat.id,idComp:blogDetail.id} }"
     >
       <feather-icon icon="UserIcon" />
     </b-button>
@@ -134,8 +134,62 @@
               />
               <span class="font-weight-bold">Type</span></b-col>
                <b-col md="8">{{cat.type}}</b-col>
+                     
             </b-row>
-
+            <b-row>
+         
+            <div class="d-flex justify-content-between align-items-center">
+              
+              <div v-if="new Date()>new Date(blogDetail.deadline)">
+                <hr>
+                  <b-alert
+      v-height-fade.appear
+      variant="danger"
+      :show="show"
+      class="mb-0"
+    >
+      <div class="alert-body">
+        <feather-icon
+          icon="InfoIcon"
+          class="mr-50"
+        />
+        
+                 Les inscriptions n'est plus acceptes
+      </div>
+    </b-alert>
+                
+                </div>
+                <div v-else-if="new Date()>new Date(blogDetail.end)">       <b-alert
+      v-height-fade.appear
+      variant="Warning"
+      :show="show"
+      class="mb-0"
+    >
+      <div class="alert-body">
+        <feather-icon
+          icon="InfoIcon"
+          class="mr-50"
+        />
+        
+                Finis
+      </div>
+    </b-alert></div>
+                <div v-else-if="new Date()==new Date(blogDetail.start)">      <b-alert
+      v-height-fade.appear
+      variant="success"
+      :show="show"
+      class="mb-0"
+    >
+      <div class="alert-body">
+        <feather-icon
+          icon="InfoIcon"
+          class="mr-50"
+        />
+        
+                 Aujourd'hui
+      </div>
+    </b-alert></div>
+                <div v-else>
             <b-button  
         v-ripple.400="'rgba(113, 102, 240, 0.15)'"
         v-b-modal.modal-select2
@@ -144,7 +198,11 @@
 
       >
        Participer
-      </b-button>
+      </b-button></div>
+             
+            </div>
+            </b-row>
+
           </b-card>
         </b-col>
          
@@ -422,7 +480,7 @@ export default {
         }
       }),
 
-         authentication.participantList({ id: "2"}).then(response => {
+         authentication.participantList({ id: "5"}).then(response => {
       participantList.value= response.data.users,
       console.log("ppp",participantList.value)
     }),

@@ -224,17 +224,18 @@ export default [
   },
   
   {
-    path: '/apps/competitions/bracket/:id',
+    path: '/apps/competitions/bracket/:idComp/:id',
     name: 'apps-competitions-bracket',
     component: () => import('@/views/apps/competition/Bracket.vue'),
   },
   {
-    path: '/apps/competitions/players/:id',
+    path: '/apps/competitions/players/:idComp/:id',
     name: 'apps-competitions-players',
     component: () => import('@/views/apps/competition/ListPlayer.vue'),
+
   },
   {
-    path: '/apps/competitions/matches/:id',
+    path: '/apps/competitions/matches/:idComp/:id',
     name: 'apps-competitions-matches',
     component: () => import('@/views/apps/competition/ListMatches.vue'),
   },

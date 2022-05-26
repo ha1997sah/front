@@ -168,19 +168,7 @@
 </div>
           <!-- User Role -->
          
-          
-              <validation-provider
-              #default="{ errors }"
-            name="image"
-            rules="required"
-          >
-            <b-form-group
-              label="image"
-              label-for="image"
-             :state="Boolean(file)"
-
-
-            >
+        
           <b-form-group>
                 <b-form-file
                placeholder="Choisir une photo..."
@@ -188,11 +176,7 @@
                  @change="selectFile"
                    />
              </b-form-group>
-           <b-form-invalid-feedback >
-          {{ errors[0] }}
-        </b-form-invalid-feedback>
-            </b-form-group>
-          </validation-provider>
+      
           <!-- -->
               <validation-provider
             #default="{ errors }"

@@ -4,8 +4,13 @@ export default [
     name: 'access-control',
     component: () => import('@/views/apps/acl/CompetitionList.vue'),
     meta: {
-      resource: 'ACL',
-      action: 'read',
+      pageTitle: 'Compétitions',
+      breadcrumb: [
+        {
+          text: 'Tous les compétitions',
+        },
+        
+      ],
     },
   },
 

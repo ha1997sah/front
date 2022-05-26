@@ -511,8 +511,6 @@ import { ValidationProvider, ValidationObserver, extend } from 'vee-validate'
 import {mapState} from 'vuex'
 import axios from 'axios'
 import Ripple from 'vue-ripple-directive'
-
-
 import {
   BCard, BLink,BFormFile, BFormDatepicker, BCardTitle, BCardText, BForm,BFormInvalidFeedback,BButtonToolbar,
   BButton, BFormInput, BFormGroup, BInputGroup, BInputGroupAppend, BFormCheckbox, BAlert,BTab, BTabs,BCol,BRow,BFormRadio
@@ -527,9 +525,6 @@ import { getHomeRouteForLoggedInUser } from '@/auth/utils'
 import vSelect from 'vue-select'
 import flatPickr from 'vue-flatpickr-component'
 import useJwt from '@/auth/jwt/useJwt'
-
-
-
 export default {
   components: {
     BFormRadio,
@@ -596,7 +591,6 @@ export default {
        fedOptions :[],
       currentTab: 0,
       disabledTabIndex: 0,
-
       // validation rules
       required,
       email,
@@ -656,11 +650,7 @@ const data = response.data.feds
 data.forEach(element => { this.fedOptions.push({label:element.name, value:element.id})
   console.log(this.fedOptions)
 });
-
-
    })
-
-
   },
   methods: {
     clubUnderFed() {
@@ -671,8 +661,6 @@ const data = response.data.clubs
 data.forEach(element => { this.roleOptions.push({label:element.name, value:element.id})
   console.log(this.roleOptions)
 });
-
-
    } )},
       add(index) {
             this.inputs.push({ name: '' });
@@ -695,13 +683,10 @@ data.forEach(element => { this.roleOptions.push({label:element.name, value:eleme
          formData.append('belt',this.selectedBelt)
          formData.append('height',this.selectedHeight)
          formData.append('weight',this.selectedWeight)
-
         formData.append('phone',this.phone)
         formData.append('ClubId',this.selectedItem.value)
         formData.append('FederationId',this.selectedFed.value)
                 formData.append('sexe',this.selectedSexe)
-
-
         formData.append('birthDate',this.birthDate)
         formData.append('matricule',this.matricule)
         formData.append('records',JSON.stringify(this.inputs))
@@ -734,7 +719,6 @@ data.forEach(element => { this.roleOptions.push({label:element.name, value:eleme
       
       } 
     },
-
      async isUsernameUnique() {
       try {
         const response = await authentication.isUniqueEmail ({
@@ -748,7 +732,6 @@ data.forEach(element => { this.roleOptions.push({label:element.name, value:eleme
         }
       }
     }
-
   },
 }
 </script>

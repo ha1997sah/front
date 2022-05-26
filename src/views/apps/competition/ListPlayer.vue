@@ -9,6 +9,21 @@
         </div>
       </b-col>
       <b-col lg="4">
+        <div class="m-2">
+       
+            <b-button
+              style="float:right"
+
+      v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+      variant="primary"
+      class="btn-icon rounded-circle"
+              :to="{ name: 'apps-competitions-matches',params: {id:category.id,idComp:idComp} }"
+
+    >
+      <feather-icon icon="GlobeIcon" />
+    </b-button>
+
+        </div>
          <div class="m-2">
        
             <b-button
@@ -17,7 +32,6 @@
       v-ripple.400="'rgba(255, 255, 255, 0.15)'"
       variant="primary"
       class="btn-icon rounded-circle"
-       @click="$router.push( { path: `/apps/competitions/matches/${idCat}`})"
     >
       <feather-icon icon="DownloadIcon" />
     </b-button>
@@ -201,7 +215,7 @@ BButton,BTabs, BTab ,BCol,BRow,BCard,BLink,BImg,BCardText,BCardImg,BCardBody,BAv
 import router from '@/router'
 import { find } from 'postcss-rtl/lib/affected-props'
 export default {
-    directives: {
+directives: {
     Ripple,
      'b-toggle': VBToggle,
         'b-popover': VBPopover,
@@ -236,6 +250,7 @@ export default {
       category:null,
       idCat:router.currentRoute.params.id,
            userId:"",
+           idComp:router.currentRoute.params.idComp
 
       
     
@@ -243,11 +258,11 @@ export default {
 
 },
 created(){
-  
+  console.log("id",router.currentRoute.params.idComp)
    authentication.hasRound({catId:router.currentRoute.params.id}).then(response=>{
       this.show=response.data.show
     })
-   authentication.findCometitionById("2").then(response=>{
+   authentication.findCometitionById(router.currentRoute.params.idComp).then(response=>{
    this.comp=response.data.competition,
    this.users=response.data.users
    this.categories=this.comp.Categories
@@ -261,12 +276,13 @@ created(){
 },
 methods : {
    sendInfo(info){
-     
+     console.log(info)
        this.userId=info },
         eliminer() {
+          console.log(router.currentRoute.params.idComp )
       
           authentication.eliminer ({
-         compId: "2" ,
+         compId:router.currentRoute.params.idComp ,
          userId:this.userId
      
         }) .then(() => {
